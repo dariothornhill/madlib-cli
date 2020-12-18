@@ -1,4 +1,4 @@
-from madlib_cli.madlib import load_template_file,parse_template
+from madlib_cli.madlib import load_template_file, merge_template,parse_template
 import pytest
 
 def test_load_template_file():
@@ -15,3 +15,10 @@ def test_parse_template():
     actual = parse_template('This is a {Adjective} {Noun}!')
     assert type(actual) is list
     assert all([a == b for a, b in zip(actual, expected)])
+
+def test_merge():
+    template = 'This is a {Adjective} {Noun}!'
+    words = ['cool', 'test']
+    expected = 'This is a cool test!'
+    actual = merge_template(template, words)
+    assert expected == actual
