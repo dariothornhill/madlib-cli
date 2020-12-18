@@ -25,7 +25,10 @@ def load_template_file(filename: str) -> str :
 
 
 def merge_template(template: str, words: list) -> str :
-    pass
+    result = template
+    for word in words:
+        result = re.sub(r"{[\w]+}",word,result,1)
+    return result
 
 def main():
     show_welcome()
